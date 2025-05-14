@@ -1,5 +1,5 @@
 const base_url = "https://api.rawg.io/api/";
-const API_KEY = "a7f912a1c25849858c5ced2e17b4a05b";
+const API_KEY = import.meta.env.VITE_GAMES_API;
 
 // Date utils
 const getCurrentMonth = () => {
