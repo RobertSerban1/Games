@@ -1,31 +1,65 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { popularGamesURL } from "./api";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    fetch(popularGamesURL())
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Games:", data);
+        setGames(data.results); // RAWG returnează jocurile în `results`
+      })
+      .catch((err) => console.error("Fetch error:", err));
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div style={{ padding: "2rem", fontFamily: "Arial" }}>
+      <h1>🔥 Top 10 Rated Games</h1>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+          gap: "1rem",
+        }}
+      >
+        {games.map((game) => (
+          <div
+            key={game.id}
+            style={{
+              border: "1px solid #ccc",
+              borderRadius: "10px",
+              padding: "1rem",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+            }}
+          >
+            <img
+              src={game.background_image}
+              alt={game.name}
+              style={{ width: "100%", borderRadius: "8px" }}
+            />
+            <h3>{game.name}</h3>
+            <p>⭐ Rating: {game.rating}</p>
+            <a
+              href={`https://rawg.io/games/${game.slug}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <button
+                style={{
+                  padding: "0.5rem 1rem",
+                  marginTop: "0.5rem",
+                  cursor: "pointer",
+                }}
+              >
+                More info
+              </button>
+            </a>
+          </div>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 
