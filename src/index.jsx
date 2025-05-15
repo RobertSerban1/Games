@@ -3,13 +3,16 @@ import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 //REDUX SETUP
 
-import { createStore } from "@reduxjs/toolkit";
+import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./reducers/index.js";
 import { Provider } from "react-redux";
+import { thunk } from "redux-thunk";
+
+const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnchancer(applyMiddleware(thunk))
 );
 
 createRoot(document.getElementById("root")).render(
