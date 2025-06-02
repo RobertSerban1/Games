@@ -12,6 +12,12 @@ import { motion } from "framer-motion";
 
 const Home = () => {
   //FETCH GAMES
+
+  useEffect(() => {
+    dispatch({ type: "DEVTOOLS_TEST", payload: { active: true } });
+    dispatch(loadGames());
+  }, []);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

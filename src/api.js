@@ -27,3 +27,12 @@ const newGames = `games?key=${API_KEY}&dates=${lastYear},${currentDate}&ordering
 export const popularGamesURL = () => `${base_url}${popular_games}`;
 export const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
 export const newGamesURL = () => `${base_url}${newGames}`;
+
+//Game details
+export const gameDetailsURL = (game_id) =>
+  `${base_url}games/${game_id}?key=${API_KEY}`;
+
+//Game Screenshots
+
+export const gameScreenshotURL = (game_id) =>
+  `${base_url}games/${game_id}/screenshots?key=${API_KEY}`;

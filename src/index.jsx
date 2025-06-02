@@ -8,12 +8,9 @@ import rootReducer from "./reducers/index.js";
 import { Provider } from "react-redux";
 import { thunk } from "redux-thunk";
 
-const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  rootReducer,
-  composeEnchancer(applyMiddleware(thunk))
-);
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
