@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import GameDetail from "../components/GameDetail";
+import { LayoutGroup } from "framer-motion";
+
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesAction";
@@ -7,7 +9,7 @@ import { loadGames } from "../actions/gamesAction";
 import Game from "../components/Game";
 //Styling and Animation
 import styled from "styled-components";
-import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { fadeIn } from "../animations";
 
@@ -27,7 +29,7 @@ const Home = () => {
   );
   return (
     <GameList variants={fadeIn} initial="hidden" animate="show">
-      <AnimateSharedLayout type="crossfade">
+      <LayoutGroup type="crossfade">
         <AnimatePresence>
           {pathId && <GameDetail pathId={pathId} />}
         </AnimatePresence>
@@ -85,7 +87,7 @@ const Home = () => {
             />
           ))}
         </Games>
-      </AnimateSharedLayout>
+      </LayoutGroup>
     </GameList>
   );
 };

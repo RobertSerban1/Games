@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // ✅ corect
 import { smallImage } from "../util";
 //IMAGES
 import playstation from "../img/playstation.svg";
@@ -18,16 +18,17 @@ import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 
 const GameDetail = ({ pathId }) => {
-  const history = useHistory();
+  const navigate = useNavigate(); // ✅ înlocuiește useHistory
 
   //Exit Detail
   const exitDetailHander = (e) => {
     const element = e.target;
     if (element.classList.contains("shadow")) {
       document.body.style.overflow = "auto";
-      history.push("/");
+      navigate("/"); // ✅ înlocuiește history.push("/")
     }
   };
+
   //Get Stars
   const getStars = () => {
     const stars = [];
@@ -62,6 +63,7 @@ const GameDetail = ({ pathId }) => {
 
   //Data
   const { screen, game, isLoading } = useSelector((state) => state.detail);
+
   return (
     <>
       {!isLoading && (
@@ -96,7 +98,7 @@ const GameDetail = ({ pathId }) => {
             <Description>
               <p>{game.description_raw}</p>
             </Description>
-            <div className="gallery">
+            <Gallery>
               {screen.results.map((screen) => (
                 <img
                   src={smallImage(screen.image, 1280)}
@@ -104,7 +106,7 @@ const GameDetail = ({ pathId }) => {
                   alt={screen.image}
                 />
               ))}
-            </div>
+            </Gallery>
           </Detail>
         </CardShadow>
       )}
@@ -112,6 +114,7 @@ const GameDetail = ({ pathId }) => {
   );
 };
 
+// Styled Components
 const CardShadow = styled(motion.div)`
   width: 100%;
   min-height: 100vh;
@@ -121,15 +124,12 @@ const CardShadow = styled(motion.div)`
   top: 0;
   left: 0;
   z-index: 5;
-
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
-
   &::-webkit-scrollbar-thumb {
     background-color: #ff7676;
   }
-
   &::-webkit-scrollbar-track {
     background: white;
   }
@@ -159,9 +159,11 @@ const Stats = styled(motion.div)`
     display: inline;
   }
 `;
+
 const Info = styled(motion.div)`
   text-align: center;
 `;
+
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
@@ -179,6 +181,19 @@ const Media = styled(motion.div)`
 
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
+`;
+
+const Gallery = styled.div`
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+
+  img {
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export default GameDetail;

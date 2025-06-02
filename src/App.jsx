@@ -1,20 +1,23 @@
 import React from "react";
-//Components and pages
+// Components and pages
 import Home from "./pages/Home";
 import Nav from "./components/Nav";
-//Styles
+// Styles
 import GlobalStyles from "./components/GlobalStyles";
-//Router
-import { Route } from "react-router-dom";
+// Router
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <GlobalStyles />
-      <Nav />
-      <Route path={["/game/:id", "/"]}>
-        <Home />
-      </Route>
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/game/:id" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
