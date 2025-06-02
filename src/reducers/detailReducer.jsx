@@ -1,4 +1,8 @@
-const initialState = { game: {}, screens: [] };
+const initialState = {
+  game: { platforms: [] },
+  screen: { results: [] },
+  isLoading: true,
+};
 
 const detailReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -6,10 +10,17 @@ const detailReducer = (state = initialState, action) => {
       return {
         ...state,
         game: action.payload.game,
-        screens: action.payload.screens,
+        screen: action.payload.screen,
+        isLoading: false,
+      };
+    case "LOADING_DETAIL":
+      return {
+        ...state,
+        isLoading: true,
       };
     default:
-      return state;
+      return { ...state };
   }
 };
+
 export default detailReducer;

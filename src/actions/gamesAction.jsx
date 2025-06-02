@@ -1,19 +1,19 @@
 import axios from "axios";
-import { popularGamesURL, upcomingGamesURL, newGamesURL } from "../api";
+import { gameDetailsURL, gameScreenshotURL } from "../api";
 
-//Action creator
-
-export const loadGames = () => async (dispatch) => {
-  //FETCH AXIOS
-  const popularData = await axios.get(popularGamesURL()); // apelează API-ul
-  const newGamesData = await axios.get(newGamesURL()); // apelează API-ul
-  const upComingData = await axios.get(upcomingGamesURL()); // apelează API-ul
+export const loadDetail = (id) => async (dispatch) => {
   dispatch({
-    type: "FETCH_GAMES",
+    type: "LOADING_DETAIL",
+  });
+
+  const detailData = await axios.get(gameDetailsURL(id));
+  const screenShotData = await axios.get(gameScreenshotURL(id));
+
+  dispatch({
+    type: "GET_DETAIL",
     payload: {
-      popular: popularData.data.results, // trimite datele reale ca payload
-      upcoming: upComingData.data.results,
-      newGames: newGamesData.data.results,
+      game: detailData.data,
+      screen: screenShotData.data,
     },
   });
 };
