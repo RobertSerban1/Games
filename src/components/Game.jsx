@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 //Redux
 import { useDispatch } from "react-redux";
-import { loadDetail } from "../actions/detailAction";
+import { loadDetail } from "../actions/detailsAction";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 import { popup } from "../animations";
