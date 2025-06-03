@@ -1,12 +1,18 @@
-# React + Vite
+The Games Explorer is a responsive web app built with React, JavaScript, Redux, and Vite, using the RAWG Video
+Games API to fetch real-time data on popular, upcoming, and newly released games. It features animated transitions
+with Framer Motion, styled components for modular design, and a powerful search function for exploring detailed
+game info, including ratings, platforms, and screenshots.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📸 Screenshots
 
-Currently, two official plugins are available:
+### Main page
+![Screenshot 1](screenshots/1.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Game search
+![Screenshot 2](screenshots/2.png)
 
-## Expanding the ESLint configuration
+### Game details
+![Screenshot 3](screenshots/3.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Games extra photos
+![Screenshot 4](screenshots/4.png)
