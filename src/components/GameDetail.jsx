@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom"; // ✅ corect
+import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
 //IMAGES
 import playstation from "../img/playstation.svg";
@@ -18,14 +18,14 @@ import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 
 const GameDetail = ({ pathId }) => {
-  const navigate = useNavigate(); // ✅ înlocuiește useHistory
+  const navigate = useNavigate();
 
   //Exit Detail
   const exitDetailHander = (e) => {
     const element = e.target;
     if (element.classList.contains("shadow")) {
       document.body.style.overflow = "auto";
-      navigate("/"); // ✅ înlocuiește history.push("/")
+      navigate("/");
     }
   };
 
